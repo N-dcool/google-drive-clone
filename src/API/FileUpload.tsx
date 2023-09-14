@@ -3,7 +3,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {addFiles} from "./FileStore";
 
 
-export const fileUpload = (file: any, setProgress: Function) => {
+export const fileUpload = (file: any, setProgress: Function, parentId: string, userEmail: string, ownerEmail: string) => {
     const storageRef = ref(storage, 'files/' + file.name);
     // Create the file metadata
     /** @type {any} */
@@ -49,7 +49,7 @@ export const fileUpload = (file: any, setProgress: Function) => {
         // Upload completed successfully, now we can get the download URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             // console.log('File available at', downloadURL);
-            addFiles(downloadURL);
+            addFiles(downloadURL, file.name, parentId, userEmail , ownerEmail);
         });
       }
     );

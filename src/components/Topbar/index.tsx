@@ -3,7 +3,7 @@ import { signIn, signOut } from "next-auth/react";
 import { useFetchSession } from "@/hooks/useSession";
 import styles from "./Topbar.module.scss"
 
-export default function TopBar() {
+export function TopBar() {
     let {session} = useFetchSession();
   return (
     <div className={styles.authBtn}>
