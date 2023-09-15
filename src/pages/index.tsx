@@ -1,8 +1,7 @@
-import Head from "next/head";
-import { HomeComponent } from "@/components/Home";
+import Head from 'next/head';
+import { HomeComponent } from '@/components/Home';
 
 export default function Home() {
-  
   return (
     <>
       <Head>
@@ -16,10 +15,8 @@ export default function Home() {
             Welcome <span className="text-[hsl(280,100%,70%)]">{session?.user.name}</span>
           </h1> */}
           <HomeComponent />
-          
         </div>
       </main>
-      
     </>
   );
 }

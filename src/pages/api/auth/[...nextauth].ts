@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
-import DiscordProvider from "next-auth/providers/discord";
+import NextAuth from 'next-auth';
+import GithubProvider from 'next-auth/providers/github';
+import DiscordProvider from 'next-auth/providers/discord';
 
 export const authOptions = {
   // Configure one or more authentication providers

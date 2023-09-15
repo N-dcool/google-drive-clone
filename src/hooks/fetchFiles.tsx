@@ -1,22 +1,40 @@
-import { onSnapshot, collection} from "firebase/firestore"
-import { database } from "@/firebaseCongif"
-import { useEffect, useState } from "react"
+import { onSnapshot, collection } from 'firebase/firestore';
+import { database } from '@/firebaseCongif';
+import { useEffect, useState } from 'react';
 
-let files = collection(database, "files")
+let files = collection(database, 'files');
 
-export const fetchFiles = () =>{
-    const [fileList, setFileList] = useState([{}]);
+export const fetchFiles = (parentId: string) => {
+  const [fileList, setFileList] = useState<ArrayType>([]);
 
-    useEffect(() => {
-        onSnapshot(files, (response) => {
-            setFileList(
-                response.docs.map((item) => {
-                    return {...item.data(), id: item.id}     
-                }
-            ))
-        })
-    },[]);
+  const getFolder = () => {
+    // console.log(parentId);
+    if (!parentId) {
+      onSnapshot(files, (response) => {
+        setFileList(
+          response.docs
+            .map((item) => {
+              return { ...item.data(), id: item.id };
+            })
+            .filter((item: any) => item.parentId === ''),
+        );
+      });
+    } else {
+      onSnapshot(files, (response) => {
+        setFileList(
+          response.docs
+            .map((item) => {
+              return { ...item.data(), id: item.id };
+            })
+            .filter((item: any) => item.parentId === parentId),
+        );
+      });
+    }
+  };
 
-    return {fileList};
-    
-}
+  useEffect(() => {
+    getFolder();
+  }, [parentId]);
+
+  return { fileList };
+};
