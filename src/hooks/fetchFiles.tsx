@@ -1,40 +1,41 @@
-import { onSnapshot, collection } from 'firebase/firestore';
+import { onSnapshot, collection, query, where } from 'firebase/firestore';
 import { database } from '@/firebaseCongif';
 import { useEffect, useState } from 'react';
 
 let files = collection(database, 'files');
 
-export const fetchFiles = (parentId: string) => {
+export const fetchFiles = (parentId: string, userEmail: string) => {
   const [fileList, setFileList] = useState<ArrayType>([]);
 
   const getFolder = () => {
-    // console.log(parentId);
-    if (!parentId) {
-      onSnapshot(files, (response) => {
-        setFileList(
-          response.docs
-            .map((item) => {
-              return { ...item.data(), id: item.id };
-            })
-            .filter((item: any) => item.parentId === ''),
-        );
-      });
-    } else {
-      onSnapshot(files, (response) => {
-        setFileList(
-          response.docs
-            .map((item) => {
-              return { ...item.data(), id: item.id };
-            })
-            .filter((item: any) => item.parentId === parentId),
-        );
-      });
+    if (userEmail) {
+      let queryEmail = query(files, where('userEmail', '==', userEmail));
+      if (!parentId) {
+        onSnapshot(queryEmail, (response) => {
+          setFileList(
+            response.docs
+              .map((item) => {
+                return { ...item.data(), id: item.id };
+              })
+              .filter((item: any) => item.parentId === ''),
+          );
+        });
+      } else {
+        onSnapshot(queryEmail, (response) => {
+          setFileList(
+            response.docs
+              .map((item) => {
+                return { ...item.data(), id: item.id };
+              })
+              .filter((item: any) => item.parentId === parentId),
+          );
+        });
+      }
     }
   };
-
   useEffect(() => {
     getFolder();
-  }, [parentId]);
+  }, [parentId, userEmail]);
 
   return { fileList };
 };

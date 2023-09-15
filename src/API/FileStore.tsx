@@ -31,6 +31,7 @@ export const addFolder = (payload: FolderPayload) => {
       isFolder: payload.isFolder,
       fileList: payload.fileList,
       parentId: payload.parentId,
+      userEmail: payload.userEmail,
     });
   } catch (e) {
     console.log(e);

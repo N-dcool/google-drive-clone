@@ -3,10 +3,12 @@ import { fetchFiles } from '@/hooks/fetchFiles';
 import { TbFile } from 'react-icons/tb';
 import { FcOpenedFolder } from 'react-icons/fc';
 import { useRouter } from 'next/router';
+import { useFetchSession } from '@/hooks/useSession';
 
 export default function ShowFiles({ parentId }: ShowFiles) {
   // console.log(parentId);
-  let { fileList } = fetchFiles(parentId);
+  let { session } = useFetchSession();
+  let { fileList } = fetchFiles(parentId, session?.user?.email as string);
   const router = useRouter();
 
   const openFile = (imageLink: string) => {

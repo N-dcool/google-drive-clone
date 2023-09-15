@@ -24,6 +24,7 @@ interface FolderPayload {
   isFolder: boolean;
   fileList: object;
   parentId: string;
+  userEmail: string | null | undefined;
 }
 
 interface GithubAuth {
