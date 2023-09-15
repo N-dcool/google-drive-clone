@@ -16,7 +16,7 @@ export const UploadFiles = ({ parentId }: UploadFiles) => {
 
   const UploadFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    fileUpload(file, setProgress, parentId, session?.user.email as string, 'ownerEmail');
+    fileUpload(file, setProgress, parentId, session?.user?.email as string, 'ownerEmail');
   };
 
   const uploadFolder = () => {
@@ -25,7 +25,7 @@ export const UploadFiles = ({ parentId }: UploadFiles) => {
       isFolder: true,
       fileList: [],
       parentId: parentId || '',
-      userEmail: session?.user.email,
+      userEmail: session?.user?.email,
     };
 
     addFolder(payload);

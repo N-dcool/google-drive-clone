@@ -1,7 +1,7 @@
 import ShowFiles from '../ShowFiles';
 import { TopBar } from '../Topbar';
 import { UploadFiles } from '../UploadFiles';
-import styles from './Home.module.scss';
+import style from './Home.module.scss';
 import { useFetchSession } from '@/hooks/useSession';
 
 export const HomeComponent = () => {
