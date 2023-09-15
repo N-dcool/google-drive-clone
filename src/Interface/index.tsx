@@ -36,3 +36,8 @@ interface DiscordAuth {
   clientId: string;
   clientSecret: string;
 }
+
+interface GoogleAuth {
+  clientId: string;
+  clientSecret: string;
+}

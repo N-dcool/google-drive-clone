@@ -29,3 +29,31 @@
   padding: 40px;
   margin-top: 60px;
 }
+
+.parentFolder {
+  margin-left: 30px;
+
+  .folderName {
+    font-size: 30px;
+  }
+}
+
+.dots {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.modal-box {
+  width: 100%;
+}
+
+.full-width {
+  width: 700px !important;
+}
+
+
