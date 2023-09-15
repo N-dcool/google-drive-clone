@@ -5,11 +5,12 @@ import styles from './Topbar.module.scss';
 
 export function TopBar() {
   let { session } = useFetchSession();
+  // console.log(session);
   return (
     <div className={styles.authBtn}>
       {session ? (
         <>
-          <img className={styles.profileImg} src={session?.user.image as string} />
+          <img className={styles.profileImg} src={session?.user?.image as string} />
           <Button onClick={() => signOut()} btnClass={'btn-primary'} title={'Sign Out!'} />
         </>
       ) : (
